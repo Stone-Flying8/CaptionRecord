@@ -1,0 +1,16 @@
+# 打包 exe 才需要的依赖（普通运行不需要）
+pyinstaller>=6.22
+
+# 打包命令（在项目目录下执行）：
+#   .venv\Scripts\python.exe -m PyInstaller --onefile --console ^
+#       --name LiveCaptionsScribe ^
+#       --collect-all uiautomation --collect-all comtypes ^
+#       --noconfirm live_captions_scribe.py
+#
+# 说明：
+#   --collect-all uiautomation   uiautomation 自带 bin\UIAutomationClient_VC140_*.dll，
+#                                不收集的话某些模式下会加载失败
+#   --collect-all comtypes       comtypes 会在运行时生成 comtypes.gen，必须完整收集
+#
+# 产物：dist\LiveCaptionsScribe.exe（单文件，约 10 MB）
+# 配置文件 setting.json 会自动生成在 exe 旁边。
